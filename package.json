@@ -15,7 +15,7 @@
   "dependencies": {
     "@appolo/engine": "8.0.19",
     "@appolo/logger": "^8.0.5",
-    "@appolo/utils": "^8.0.7",
+    "@appolo/utils": "^8.0.8",
     "snowflake-promise": "^4.2.0"
   },
   "devDependencies": {
