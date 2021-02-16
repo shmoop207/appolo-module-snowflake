@@ -1,6 +1,6 @@
 {
   "name": "@appolo/snowflake",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "",
   "private": false,
   "main": "index.js",
@@ -13,9 +13,9 @@
     "url": "git+https://github.com/shmoop207/appolo-module-snowflake.git"
   },
   "dependencies": {
-    "@appolo/engine": "8.0.19",
+    "@appolo/engine": "^8.0.23",
     "@appolo/logger": "^8.0.5",
-    "@appolo/utils": "^8.0.7",
+    "@appolo/utils": "^8.0.15",
     "snowflake-promise": "^4.2.0"
   },
   "devDependencies": {
