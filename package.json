@@ -16,7 +16,7 @@
     "@appolo/engine": "^8.0.23",
     "@appolo/logger": "^8.0.5",
     "@appolo/utils": "^8.0.15",
-    "snowflake-promise": "^4.2.0"
+    "snowflake-promise": "^4.4.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
