@@ -29,10 +29,10 @@ let SnowFlakeModule = SnowFlakeModule_1 = class SnowFlakeModule extends engine_1
     }
 };
 tslib_1.__decorate([
-    inject_1.inject()
+    (0, inject_1.inject)()
 ], SnowFlakeModule.prototype, "snowflakeProvider", void 0);
 SnowFlakeModule = SnowFlakeModule_1 = tslib_1.__decorate([
-    engine_1.module()
+    (0, engine_1.module)()
 ], SnowFlakeModule);
 exports.SnowFlakeModule = SnowFlakeModule;
 //# sourceMappingURL=snowflakeModule.js.map

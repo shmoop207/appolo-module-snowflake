@@ -15,14 +15,14 @@ let SnowflakeProvider = class SnowflakeProvider {
     }
 };
 tslib_1.__decorate([
-    inject_1.inject()
+    (0, inject_1.inject)()
 ], SnowflakeProvider.prototype, "logger", void 0);
 tslib_1.__decorate([
-    inject_1.inject()
+    (0, inject_1.inject)()
 ], SnowflakeProvider.prototype, "snowflakeClient", void 0);
 SnowflakeProvider = tslib_1.__decorate([
-    inject_1.define(),
-    inject_1.singleton()
+    (0, inject_1.define)(),
+    (0, inject_1.singleton)()
 ], SnowflakeProvider);
 exports.SnowflakeProvider = SnowflakeProvider;
 //# sourceMappingURL=snowflakeProvider.js.map
