@@ -2,24 +2,29 @@
 import {define, factory, IFactory, inject, factoryMethod, singleton} from '@appolo/inject'
 import {ILogger} from '@appolo/logger';
 import {IOptions} from "./IOptions";
-import {SnowflakeProvider} from "./snowflakeProvider";
-import {ConnectionOptions, Snowflake} from "snowflake-promise";
+import { Connection} from "snowflake-sdk";
+import * as SDK from "snowflake-sdk";
+import {Promises} from '@appolo/utils';
 
 @define()
 @singleton()
 @factory()
-export class SnowflakeClient implements IFactory<Snowflake> {
+export class SnowflakeClient implements IFactory<Connection> {
 
     @inject() protected logger: ILogger;
     @inject() protected moduleOptions: IOptions;
 
-    public async get(): Promise<Snowflake> {
+    public async get(): Promise<Connection> {
 
         try {
 
-            let client = new Snowflake(this.moduleOptions.connection, this.moduleOptions.logging, this.moduleOptions.configuration)
+            if (this.moduleOptions.configuration) {
+                SDK.configure(this.moduleOptions.configuration)
+            }
 
-            await client.connect();
+            let client = SDK.createConnection(this.moduleOptions.connection)
+
+            await Promises.fromCallback(c => client.connect(c));
 
             this.logger.info(`connected to snowflake ${this.moduleOptions.id}`);
 

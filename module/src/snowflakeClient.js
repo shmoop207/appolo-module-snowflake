@@ -3,12 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SnowflakeClient = void 0;
 const tslib_1 = require("tslib");
 const inject_1 = require("@appolo/inject");
-const snowflake_promise_1 = require("snowflake-promise");
+const SDK = require("snowflake-sdk");
+const utils_1 = require("@appolo/utils");
 let SnowflakeClient = class SnowflakeClient {
     async get() {
         try {
-            let client = new snowflake_promise_1.Snowflake(this.moduleOptions.connection, this.moduleOptions.logging, this.moduleOptions.configuration);
-            await client.connect();
+            if (this.moduleOptions.configuration) {
+                SDK.configure(this.moduleOptions.configuration);
+            }
+            let client = SDK.createConnection(this.moduleOptions.connection);
+            await utils_1.Promises.fromCallback(c => client.connect(c));
             this.logger.info(`connected to snowflake ${this.moduleOptions.id}`);
             return client;
         }

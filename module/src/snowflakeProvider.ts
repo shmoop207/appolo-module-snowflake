@@ -1,8 +1,9 @@
 import {define, inject, singleton} from '@appolo/inject'
-import {Snowflake} from "snowflake-promise";
-import {Statement, ExecuteOptions} from "snowflake-promise";
-import {clearInterval} from "timers";
+import {Connection} from "snowflake-sdk";
 import {ILogger} from '@appolo/logger';
+import {Promises} from '@appolo/utils';
+import {ExecuteOptions} from "./statement/executeOptions";
+import {Statement} from "./statement/statement";
 
 
 @define()
@@ -10,18 +11,23 @@ import {ILogger} from '@appolo/logger';
 export class SnowflakeProvider {
 
     @inject() protected logger: ILogger;
-    @inject() protected snowflakeClient: Snowflake;
+    @inject() protected snowflakeClient: Connection;
 
-    public destroy() {
-        return this.snowflakeClient.destroy();
+    public async destroy(): Promise<void> {
+        await Promises.fromCallback(c => this.snowflakeClient.destroy(c));
     }
 
-    public createStatement(options: ExecuteOptions): Statement {
-        return this.snowflakeClient.createStatement(options);
+    public createStatement<T>(options: ExecuteOptions): Statement<T> {
+        return new Statement(this.snowflakeClient, options);
     }
 
-    public execute<T>(sqlText: string, binds?: any[]): Promise<T[]> {
-        return this.snowflakeClient.execute(sqlText, binds);
+    public async execute<T>(sqlText: string, binds?: any[]): Promise<T[]> {
+        const stmt = this.createStatement<T>({sqlText, binds});
+        let rows = await stmt.execute();
+        return rows;
+    }
 
+    public client(): Connection {
+        return this.snowflakeClient;
     }
 }

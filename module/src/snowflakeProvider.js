@@ -3,15 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SnowflakeProvider = void 0;
 const tslib_1 = require("tslib");
 const inject_1 = require("@appolo/inject");
+const utils_1 = require("@appolo/utils");
+const statement_1 = require("./statement/statement");
 let SnowflakeProvider = class SnowflakeProvider {
-    destroy() {
-        return this.snowflakeClient.destroy();
+    async destroy() {
+        await utils_1.Promises.fromCallback(c => this.snowflakeClient.destroy(c));
     }
     createStatement(options) {
-        return this.snowflakeClient.createStatement(options);
+        return new statement_1.Statement(this.snowflakeClient, options);
     }
-    execute(sqlText, binds) {
-        return this.snowflakeClient.execute(sqlText, binds);
+    async execute(sqlText, binds) {
+        const stmt = this.createStatement({ sqlText, binds });
+        let rows = await stmt.execute();
+        return rows;
+    }
+    client() {
+        return this.snowflakeClient;
     }
 };
 tslib_1.__decorate([

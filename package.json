@@ -1,6 +1,6 @@
 {
   "name": "@appolo/snowflake",
-  "version": "8.0.3",
+  "version": "8.1.0",
   "description": "",
   "private": false,
   "main": "index.js",
@@ -16,19 +16,20 @@
     "@appolo/engine": "^8.0.23",
     "@appolo/logger": "^8.0.5",
     "@appolo/utils": "^8.0.15",
-    "snowflake-promise": "^4.5.0"
+    "snowflake-sdk": "^1.6.21"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.3",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^18.11.2",
-    "@types/sinon": "^10.0.13",
-    "@types/sinon-chai": "^3.2.8",
-    "chai": "^4.3.6",
-    "mocha": "^10.1.0",
-    "sinon": "^14.0.1",
+    "@types/snowflake-sdk": "^1.6.12",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.16.0",
+    "@types/sinon": "^10.0.14",
+    "@types/sinon-chai": "^3.2.9",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.4",
     "sinon-chai": "^3.7.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.5"
   },
   "author": {
     "name": "Roman Svichar",
