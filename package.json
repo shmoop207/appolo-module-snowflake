@@ -16,7 +16,7 @@
     "@appolo/engine": "^8.0.23",
     "@appolo/logger": "^8.0.5",
     "@appolo/utils": "^8.0.15",
-    "snowflake-sdk": "^1.6.21"
+    "snowflake-sdk": "^1.9.2"
   },
   "devDependencies": {
     "@types/snowflake-sdk": "^1.6.12",
